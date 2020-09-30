@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 let rolesValidos = {
     values: ['ADMIN_ROLE', 'USER_ROLE'],
-    message: '{VALUE} No e un role valido '
+    message: '{VALUE} No es un role valido '
 };
 
 let Schema = mongoose.Schema;
@@ -19,8 +19,8 @@ let usuarioSchema = new Schema({
 
     email: {
         type: String,
-        unique: true,
-        require: [true, 'El correo es necesario']
+        require: [true, 'El correo es necesario'],
+        unique: [true, 'El email ya existe']
     },
 
     password: {
@@ -48,9 +48,14 @@ let usuarioSchema = new Schema({
     google: {
         type: Boolean,
         default: false
-    }
+    },
 
+
+}, {
+    timestamps: true
 });
+
+
 
 usuarioSchema.methods.toJSON = function() {
 

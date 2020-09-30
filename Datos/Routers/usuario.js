@@ -6,12 +6,19 @@ const bcrypt = require('bcrypt');
 
 const _ = require('underscore');
 
-const Usuario = require('../models/usuario.models');
+const Usuario = require('../Models/usuario.models');
+const { verifyToken, verifyAdmin } = require('../Middlewares/Auth.middleware');
 
 const app = express();
 
 
-app.get('/datos', function(req, res) {
+app.get('/datos', verifyToken, (req, res) => {
+
+    /*return res.json({
+        usuario: req.usuario,
+        nombre: req.usuario.nombre,
+        email: req.usuario.email
+    })*/
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -31,7 +38,7 @@ app.get('/datos', function(req, res) {
 
             }
 
-            Usuario.count({ estado: true }, (err, conteo) => {
+            Usuario.countDocuments({ estado: true }, (err, conteo) => {
                 res.json({
                     ok: true,
                     usuarios,
@@ -47,7 +54,7 @@ app.get('/datos', function(req, res) {
 
 
 
-app.post('/datos', function(req, res) {
+app.post('/datos', [verifyToken, verifyAdmin], (req, res) => {
 
 
     let body = req.body;
@@ -85,7 +92,7 @@ app.post('/datos', function(req, res) {
 
 
 
-app.put('/datos/:id', function(req, res) {
+app.put('/datos/:id', [verifyToken, verifyAdmin], (req, res) => {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
@@ -116,7 +123,7 @@ app.put('/datos/:id', function(req, res) {
 
 
 
-app.delete('/datos', function(req, res) {
+app.delete('/datos/:id', [verifyToken, verifyAdmin], function(req, res) {
     let id = req.params.id;
 
     //Operador.findByIdAndRemove(id, (err, operadorBorrado) => {
@@ -125,7 +132,7 @@ app.delete('/datos', function(req, res) {
         estado: false
     }
 
-    Operador.findByIdAndUpdate(id, cambiarEstado, { new: true }, (err, usuarioBorrado) => {
+    Usuario.findByIdAndUpdate(id, cambiarEstado, { new: true }, (err, usuarioBorrado) => {
 
         if (err) {
             return res.status(400).json({
@@ -134,7 +141,7 @@ app.delete('/datos', function(req, res) {
             });
         }
 
-        if (!ususarioBorrado) {
+        if (!usuarioBorrado) {
             return res.status(400).json({
                 ok: false,
                 err: {

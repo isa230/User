@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 require('./server');
 
 
-mongoose.connect(process.env.URLDB, {
+//mongoose.connect(process.env.URLDB, {
+
+mongoose.connect("mongodb://localhost:27017/prueva", {
 
     useNewUrlParser: true,
     useCreateIndex: true,
