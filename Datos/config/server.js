@@ -30,14 +30,14 @@ process.env.SEED = process.env.SEED || 'este-es-el-seed-de desarrollo'
 //BASE DATOS
 //===========================
 
-//let urlDB;
+let urlDB;
 //la condicional no quiere funcionar, es decir el url local no me quiere guardar nada 
 //per me funciona para la nube quiero decir que guarda en el cluster pero todo en desarrollo 
 //no en producion :`(
 
-/*
+
 if (process.env.NODE_ENV === "dev") {
-    urlDB = "mongodb://localhost:27017/Empleado";
+    urlDB = "mongodb://localhost:27017/prueva";
 } else {
     urlDB = process.env.MONGO_URI;
 }
@@ -46,5 +46,3 @@ process.env.URLDB = urlDB;
 //module.exports = {
 //  port: process.env.PORT
 //};
-
-*/
