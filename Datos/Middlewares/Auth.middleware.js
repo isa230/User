@@ -54,20 +54,6 @@ const verifyToken = (req, res, next) => {
 // Verify ADMIN_ROLE
 //======================
 
-/*const verifyAdmin = (req, res, next) => {
-
-    if (req.query.Admin === 'true') {
-        next()
-    } else {
-        return res.json({
-            ok: false,
-            err: {
-                message: ' Is not Admin'
-            }
-        });
-    }
-
-}*/
 
 const verifyAdmin = (req, res, next) => {
 
@@ -86,15 +72,6 @@ const verifyAdmin = (req, res, next) => {
         });
     }
 
-    /*  console.log(req.usuario);
-    let usuario = req.usuario;
-
-    if (usuario.role === "ADMIN_ROLE") {
-
-        next();
-    } else {
-        verifySuperAdmin(req, res, next);
-    }*/
 };
 
 
