@@ -3,7 +3,8 @@ require('./config/db')
 
 
 const express = require('express');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
+const cors = require("cors");
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //  analizar aplicación / json
 app.use(bodyParser.json());
-
+app.use(cors());
 
 // Configuracion global de routers
 app.use(api);

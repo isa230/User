@@ -36,13 +36,18 @@ let urlDB;
 //no en producion :`(
 
 
-/*if (process.env.NODE_ENV === "dev") {
-    urlDB = "mongodb://localhost:27017/prueva";
-} else {*/
-urlDB = process.env.MONGO_URI;
-//}
+if (process.env.NODE_ENV === 'dev') {
+    urlDB = 'mongodb://localhost:27017/prueva';
+} else {
+    //urlDB = process.env.MONGO_URI;
+    urlDB = 'mongodb+srv://Isa230:M8OG0PIJAljLDjxg@cluster0.fnw1p.mongodb.net/prueva'
+}
+
+
+
 process.env.URLDB = urlDB;
 
-module.exports = {
+
+/*module.exports = {
     port: process.env.PORT
-}
+}*/
