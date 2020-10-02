@@ -5,10 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon datos/app.js",
-        //"start": "node datos/app.js"
-
-        "build": "bower install && grunt build",
-        "start": "nf start"
+        "start": "node datos/app.js"
     },
     "author": "jorman",
     "license": "ISC",
