@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node datos/app.js"
     },
-    "author": "jorma",
+    "author": "jorman",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.0",
