@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon datos/app.js",
-        "start": "node datos/app.js"
+        "dev": "nodemon datos/server.js",
+        "start": "node datos/server.js"
     },
     "author": "jorman",
     "license": "ISC",
