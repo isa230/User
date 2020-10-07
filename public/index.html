@@ -14,21 +14,13 @@
 </head>
 
 <body>
+
+    <!-- <img src="http://localhost:3000/imagen/usuarios/5f725fa1119fb52e78669487-615.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjp0cnVlLCJnb29nbGUiOmZhbHNlLCJfaWQiOiI1ZjcyNWZhMTExOWZiNTJlNzg2Njk0ODciLCJub21icmUiOiJ2ZXJpZnlBZG1pbiIsImVtYWlsIjoidmVyZnlBZG1pbkBnbWFpbC5jb20iLCJfX3YiOjB9LCJpYXQiOjE2MDE5MDAwODksImV4cCI6MTYwMjA3Mjg4OX0.s3NN3brdAjxM-d0ydIjOaYtCdW4OXtemNm3PNGBHd-U"alt=""> -->
+    <!--el ? e spar aponer otro parametroi y si vienen mas es el &, ojo pero el token q tengo en postman desarrollo el  toekn solo es 48 horas -->
+
+
+
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-
-
-
-    <a href="#" onclick="signOut();">Sign Out</a>
-
-    <script>
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
-                console.log('User signed out.');
-            });
-        }
-    </script>
 
     <script>
         function onSignIn(googleUser) {
@@ -54,4 +46,17 @@
 
         }
     </script>
+
+    <a href="#" onclick="signOut();">Sign Out</a>
+
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+
+
 </body>

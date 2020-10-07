@@ -7,7 +7,9 @@ const Schema = mongoose.Schema;
 
 let categoriaSchema = new Schema({
     descripcion: { type: String, unique: [true, 'Es cobligatoria la descripcion'], require: [true, 'La categoria es necesaria'] },
-    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
+    usuario: { type: Schema.Types.ObjectId, ref: 'usuario' }
+}, {
+    timestamps: true
 });
 
 //categoriaSchema.plugin(uniqueValidator, { message: '{PATH} Debe de ser unico' });

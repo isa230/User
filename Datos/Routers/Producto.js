@@ -1,5 +1,6 @@
-const { json } = require('body-parser');
 //
+const { json } = require('body-parser');
+
 const express = require('express');
 const { result } = require('underscore');
 
@@ -51,6 +52,7 @@ app.get('/productos', verifyToken, (req, res) => {
     Producto.find({ estado: true })
         .skip(desde)
         .limit(5)
+        .sort('descripcion')
         //.populate('usuario', 'nombre email')
         //.populate('categoria', 'descripcion')
         .exec((err, productos) => {
@@ -82,7 +84,8 @@ app.get('/productos/buscar/:termino', verifyToken, (req, res) => {
 
 
     Producto.find({ nombre: regex })
-        .populate('categoria', 'nombre')
+        .populate('usuario', 'nombre email')
+        .populate('Categoria', 'nombre')
         .exec((err, productos) => {
 
             if (err) {
@@ -99,6 +102,19 @@ app.get('/productos/buscar/:termino', verifyToken, (req, res) => {
 
         });
 
+    /*
+       const getDomainUser = (req, res) => {
+         const { company } = req;
+         Domains.findById(company)
+           .populate("score")
+           .then((domain) => {
+             res.json(domain);
+           })
+           .catch((e) => res.json(e));
+       };*/
+
+
+
 
 });
 
@@ -108,8 +124,8 @@ app.get('/productos/:id', verifyToken, (req, res) => {
     let id = req.params.id;
 
     Producto.findById(id)
-        // .populate('usuario', 'nombre email')
-        // .populate('Categoria', 'nombre')
+        .populate('usuario', 'nombre email') // datos si dan
+        .populate('Categoria', 'nombre')
         .exec((err, productoDB) => {
 
             if (err) {
@@ -134,9 +150,6 @@ app.get('/productos/:id', verifyToken, (req, res) => {
             });
 
         });
-
-
-
 
 
 

@@ -46,7 +46,7 @@ app.post('/categoria', verifyToken, (req, res) => {
 app.get('/categoria', verifyToken, (req, res) => {
 
     Categoria.find({})
-        .populate('Usuario', 'nombre email') //datos de useer 
+        .populate('usuario', 'nombre email') //datos de useer 
         .sort('descripcion') //orden por descripcion
         .exec((err, categorias) => {
 
@@ -68,27 +68,29 @@ app.get('/categoria/:id', verifyToken, (req, res) => {
     let id = req.params.id;
     //let categoria = req.categoria;
 
-    Categoria.findById(id, (err, categoriaDB) => {
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            });
-        }
+    Categoria.findById(id)
+        .populate('usuario', 'nombre email')
+        .exec((err, categoriaDB) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
 
-        if (!categoriaDB) {
-            return Res.status(400).json({
+            if (!categoriaDB) {
+                return Res.status(400).json({
+                    ok: true,
+                    err: {
+                        msg: 'El id no es valido'
+                    }
+                });
+            }
+            res.json({
                 ok: true,
-                err: {
-                    msg: 'El id no es valido'
-                }
+                catergoria: categoriaDB
             });
-        }
-        res.json({
-            ok: true,
-            catergoria: categoriaDB
         });
-    });
 
 });
 

@@ -16,5 +16,12 @@ app.use(require('./Cateregoria'));
 //Ruta Producto
 app.use(require('./Producto'));
 
+//Ruta subir archivo
+
+app.use(require('./uploads'));
+
+//Ruta img
+app.use(require('./imagenes'));
+
 
 module.exports = app;
